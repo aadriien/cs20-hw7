@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Joe's Hotdog Stand</title>    
+    
+    <script language="javascript">
+        function computeCost() {
+            numHotdogs = parseInt(document.getElementById("QuantityH").value);
+            numFries = parseInt(document.getElementById("QuantityF").value);
+            numSodas = parseInt(document.getElementById("QuantityS").value);
+            
+            costHotdogs = numHotdogs * 3.25;
+            costFries = numFries * 2.00;
+            costSodas = numSodas * 1.50;
+            subtotal = (costHotdogs + costFries + costSodas).toFixed(2); 
+            
+            if (numHotdogs == 0 && numFries == 0 && numSodas == 0) {
+                alert("Error: no items have been selected");
+            } 
+            else {
+                win = window.open();
+                if (numHotdogs == 1) {
+                    win.document.write("You ordered " + numHotdogs + " hotdog.");
+                } 
+                else {
+                    win.document.write("You ordered " + numHotdogs + " hotdogs.");
+                }
+                win.document.write("<br>");
+                if (numFries == 1) {
+                    win.document.write("You ordered " + numFries + " batch of fries.");
+                } 
+                else {
+                    win.document.write("You ordered " + numFries + " fries.");
+                }
+                win.document.write("<br>");
+                if (numSodas == 1) {
+                    win.document.write("You ordered " + numSodas + " soda.");
+                }
+                else {
+                    win.document.write("You ordered " + numSodas + " sodas.");
+                }
+                win.document.write("<br>");
+
+                win.document.write("Your order's subtotal will be $" + subtotal + ".");
+                
+                win.document.write("<br>");
+                
+                if (subtotal >= 20.00) {
+                    specialDiscount = (subtotal * 0.10).toFixed(2);
+                    win.document.write("Your order qualifies for Joe's special: a 10% discount!"); 
+                    win.document.write(" This means that you saved $" + specialDiscount + "!");       
+                }
+                else {
+                    specialDiscount = (0).toFixed(2);
+                    win.document.write("Your order does not qualify for any discounts.");
+                }
+                win.document.write("<br>");
+                
+                tax = 0.0625;
+                
+                win.document.write("Tax: " + (tax * 100) + "%");
+                
+                win.document.write("<br>");
+            
+                total = (subtotal - specialDiscount) * (1 + tax);        
+                win.document.write("Thus your total for today will be $" + total.toFixed(2) + ", please!");
+            }    
+        }        
+    </script>    
+</head>
+        
+<body>
+    <h1 style="text-align: center; color: #ff6600">Welcome to Joe's Hotdog Stand!</h1>
+    
+    <img style="max-width: 350px; float:right; margin-right: 200px"
+    src="https://us.123rf.com/450wm/venski/venski1802/venski180200001/96204698-stock-vector-classic-hot-dog-with-ketchup-and-mustard-isolated-vector-illustration-.jpg?ver=6"
+    alt="a picture of a hotdog">   
+    
+    <div class="joesform">
+        <table>
+            <thead>
+                <tr>
+                    <th>Item</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                </tr>    
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Hotdogs</td>
+                    <td>$3.25</td>
+                    <td>
+                        <form>
+                        <select name="Quantity" id="QuantityH">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>French Fries</td>
+                    <td>$2.00</td>
+                    <td>
+                        <form>
+                        <select name="Quantity" id="QuantityF">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                        </form>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Sodas</td>
+                    <td>$1.50</td>
+                    <td>
+                        <form>
+                        <select name="Quantity" id="QuantityS">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="10">10</option>
+                            <option value="15">15</option>
+                            <option value="20">20</option>
+                        </select>
+                        </form>
+                    </td>
+                </tr>        
+            </tbody>    
+        </table>
+    </div>
+    
+    <form>
+        <input type="button" value="Tally order" onclick="computeCost()">
+    </form>
+</body>
+
+</html>
+
+
+
